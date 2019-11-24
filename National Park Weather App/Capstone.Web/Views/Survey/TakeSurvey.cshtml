@@ -1,0 +1,122 @@
+﻿@model SurveyModel
+@{
+    ViewData["Title"] = "TakeSurvey";
+}
+
+<div class="card-survey">
+    <div class="card-body">
+        <h1 class="card-title">National Park Survey</h1>
+
+        <form asp-action="TakeSurvey" asp-controller="Survey" method="POST">
+
+
+            <p style="margin-bottom: 0;">
+                Favorite National Park
+            </p>
+            <p>
+                <select asp-for="ParkCode" class="btn btn-lg btn-info dropdown-toggle" style="width:250px;">
+                    <option value="">Please Select a National Park</option>
+                    <option Value="CVNP">Cuyahoga Valley National Park</option>
+                    <option Value="ENP">Everglades National Park</option>
+                    <option Value="GCNP">Grand Canyon National Park</option>
+                    <option Value="GNP">Glacier National Park</option>
+                    <option Value="GSMNP">Great Smoky Mountains National Park</option>
+                    <option Value="GTNP">Grand Teton National Park</option>
+                    <option Value="MRNP">Mount Rainier National Park</option>
+                    <option Value="RMNP">Rocky Mountain National Park</option>
+                    <option Value="YNP">Yellowstone National Park</option>
+                    <option Value="YNP2">Yosemite National Park</option>
+                </select>
+            </p>
+
+
+
+
+            <p style="margin-bottom: 0;">
+                <input type="text" asp-for="EmailAddress" class="form-control" style="width:250px; margin-bottom: 0;" />
+            </p>
+
+            <p style="margin-bottom: 0; margin-top:10px;">
+
+                State of Residence
+            </p>
+            <p>
+                <select asp-for="State" class="btn btn-lg btn-info dropdown-toggle" style="width:250px;">
+                    <option value="">Please Select A State</option>
+                    <option Value="Alabama">Alabama</option>
+                    <option Value="Alaska">Alaska</option>
+                    <option Value="Arizona">Arizona</option>
+                    <option Value="Arkansas">Arkansas</option>
+                    <option Value="California">California</option>
+                    <option Value="Colorado">Colorado</option>
+                    <option Value="Connecticut">Connecticut</option>
+                    <option Value="District of Columbia">District of Columbia</option>
+                    <option Value="Delaware">Delaware</option>
+                    <option Value="Florida">Florida</option>
+                    <option Value="Georgia">Georgia</option>
+                    <option Value="Hawaii">Hawaii</option>
+                    <option Value="Idaho">Idaho</option>
+                    <option Value="Illinois">Illinois</option>
+                    <option Value="Indiana">Indiana</option>
+                    <option Value="Iowa">Iowa</option>
+                    <option Value="Kansas">Kansas</option>
+                    <option Value="Kentucky">Kentucky</option>
+                    <option Value="Louisiana">Louisiana</option>
+                    <option Value="Maine">Maine</option>
+                    <option Value="Maryland">Maryland</option>
+                    <option Value="Massachusetts">Massachusetts</option>
+                    <option Value="Michigan">Michigan</option>
+                    <option Value="Minnesota">Minnesota</option>
+                    <option Value="Mississippi">Mississippi</option>
+                    <option Value="Missouri">Missouri</option>
+                    <option Value="Montana">Montana</option>
+                    <option Value="Nebraska">Nebraska</option>
+                    <option Value="Nevada">Nevada</option>
+                    <option Value="New Hampshire">New Hampshire</option>
+                    <option Value="New Jersey">New Jersey</option>
+                    <option Value="New Mexico">New Mexico</option>
+                    <option Value="New York">New York</option>
+                    <option Value="North Carolina">North Carolina</option>
+                    <option Value="North Dakota">North Dakota</option>
+                    <option Value="Ohio">Ohio</option>
+                    <option Value="Oklahoma">Oklahoma</option>
+                    <option Value="Oregon">Oregon</option>
+                    <option Value="Pennsylvania">Pennsylvania</option>
+                    <option Value="Rhode Island">Rhode Island</option>
+                    <option Value="South Carolina">South Carolina</option>
+                    <option Value="South Dakota">South Dakota</option>
+                    <option Value="Tennessee">Tennessee</option>
+                    <option Value="Texas">Texas</option>
+                    <option Value="Utah">Utah</option>
+                    <option Value="Vermont">Vermont</option>
+                    <option Value="Virginia">Virginia</option>
+                    <option Value="Washington">Washington</option>
+                    <option Value="West Virginia">West Virginia</option>
+                    <option Value="Wisconsin">Wisconsin</option>
+                    <option Value="Wyoming">Wyoming</option>
+                </select>
+            </p>
+
+            <p style="margin-bottom: 0;">
+                Activity Level
+
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <select asp-for="ActivityLevel" class="btn btn-lg btn-info dropdown-toggle" style="width:250px;">
+                        <option value="">Please Select Your Activity Level</option>
+                        <option Value="Extremely Active">Extremely Active</option>
+                        <option Value="Active">Active</option>
+                        <option Value="Sedentary">Sedentary</option>
+                        <option Value="Inactive">Inactive</option>
+                    </select>
+                </div>
+
+            </p>
+            <input type="submit" value="Submit" class="btn btn-danger" />
+            <p></p>
+            <p>
+                <div asp-validation-summary="All" id="validation-error"></div>
+            </p>
+
+        </form>
+    </div>
+</div>

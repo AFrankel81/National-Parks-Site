@@ -1,0 +1,49 @@
+﻿@model ParkModel
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="card">
+    <div class="card-body">
+        <h2 class="display-3" style="text-align: center;">@Model.ParkName, @Model.State</h2>
+
+        <img src="~/images/@(Model.ParkCode).jpg" border="0" style="float:left;border-color:#1FC909;margin:30px; border:20px; border-radius:10px;width:770px;" />
+        <ul class="list-group" style="margin-top: 80px;">
+
+            <li class="list-group-item d-flex justify-content-between align-items-center">Year Founded: @Model.YearFounded</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Annual Visitor Count: @Model.AnnualVistorCount.ToString("N0")</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Entry Fee: @Model.EntryFee.ToString("C")</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Climate: @Model.Climate</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Acreage: @Model.Acreage.ToString("N0")</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Elevation: @Model.Elevation.ToString("N0") feet</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Number of Campsites: @Model.NumberOfCampsites.ToString("N0")</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Trail Miles: @Model.MilesOfTrail.ToString("N0")</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Number of Animal Species: @Model.NumberOfAnimalSpecies.ToString("N0")</li>
+        </ul>
+
+        <br />
+        <p style=" padding-top: 44px; font-weight: normal;">@Model.ParkDescription</p>
+    </div>
+</div>
+
+<blockquote class="blockquote text-center">
+    <p class="mb-0"><h2 style="color:#1FC909;">@Model.Quote</h2></p>
+    <footer class="blockquote-footer"><h4>@Model.QuoteSource</h4></footer>
+</blockquote>
+
+        <form method="post" asp-controller="Park" asp-action="Details" asp-route-ParkCode="@Model.ParkCode" asp-route-WeatherChoice="@Model.WeatherChoice">
+            <p>
+                <label asp-for="WeatherChoice">Fahrenheit or Celcius:   </label>
+                <div class="btn-group btn-group-toggle btn-group-lg" data-toggle="buttons">
+                    <label class="btn badge badge-success btn-lg">
+                        <input type="radio" name="WeatherChoice" id="option1" autocomplete="off" checked="" value="f"> Fahrenheit
+                    </label>
+                    <label class="btn badge badge-warning btn-lg">
+                        <input type="radio" name="WeatherChoice" id="option2" autocomplete="off" value="c"> Celsius
+                    </label>
+
+                </div>&nbsp; &nbsp;<input type="submit" value="Submit" class="btn btn-danger" />
+            </p>
+
+        </form>
+<p></p>
+        <partial name="_WeatherResult" model="Model.WeatherList" />

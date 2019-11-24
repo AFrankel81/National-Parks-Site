@@ -1,0 +1,156 @@
+﻿@model IList<WeatherModel>
+
+@{
+    int count = 0;
+    string weatherAdvisory = "";
+}
+<style>
+    .box-0 img{
+        width:160px;
+        align-content: center;
+        text-align: center;
+    }
+    .box-0 {
+        align-content: center;
+        text-align: center;
+        margin-right:10px;
+    }
+    .box-1 img {
+        width: 100px;
+    }
+    .box-1 {
+        align-content: center;
+        text-align: center;
+        margin-right: 10px;
+    }
+    .box-2 img {
+        width: 100px;
+    }
+    .box-2 {
+        align-content: center;
+        text-align: center;
+        margin-right: 10px;
+    }
+    .box-3 img {
+        width: 100px;
+    }
+    .box-3 {
+        align-content: center;
+        text-align: center;
+        margin-right: 10px;
+    }
+    .box-4 img {
+        width: 100px;
+    }
+    .box-4 {
+        align-content: center;
+        text-align: center;
+    }
+</style>
+<div class="weather-container">
+
+    @foreach (WeatherModel model in Model)
+    {
+    <div class="box-@count card">
+        <div class="card-body">
+            @switch (model.Forecast)
+            {
+
+                case "rain":
+
+                    <img class="forecast-picture" src="~/images/rain.png" />
+                    @if (model.FiveDayForecast == 1)
+                    {
+                        <div class="alert alert-dismissible alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <a class="alert-link">Pack rain gear and waterproof shoes</a>
+                        </div>
+                       
+                    }
+
+                    break;
+
+                case "cloudy":
+                    <img class="forecast-picture" src="~/images/cloudy.png" />
+                    break;
+
+                case "partly cloudy":
+                    <img class="forecast-picture" src="~/images/partlyCloudy.png" />
+                    break;
+
+                case "snow":
+                    <img class="forecast-picture" src="~/images/snow.png" />
+                    @if (model.FiveDayForecast == 1)
+                    {
+                    <div class="alert alert-dismissible alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <a class="alert-link">Pack snowshoes</a>
+                    </div>
+                    }
+                    break;
+
+                case "sunny":
+                    <img class="forecast-picture" src="~/images/sunny.png" />
+                    @if (model.FiveDayForecast == 1)
+                    {
+                    <div class="alert alert-dismissible alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <a class="alert-link">Pack sunscreen</a>
+                    </div>
+                    }
+                    break;
+
+                case "thunderstorms":
+                    <img class="forecast-picture" src="~/images/thunderstorms.png" />
+                    @if (model.FiveDayForecast == 1)
+                    {
+                        <div class="alert alert-dismissible alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <a class="alert-link">Seek shelter and avoid hiking on exposed ridges</a>
+                        </div>
+
+                    }
+                    break;
+
+                default:
+                    throw new Exception(String.Format("Unknown Forecast:"));
+            }
+
+            <div class="temperature">
+                @if (Convert.ToString(ViewData["Message"]) == "c")
+                {
+                    <span>High:</span> @Convert.ToString(model.HighC)<span>&deg; C</span><BR />
+                    <span>Low:</span> @Convert.ToString(model.LowC)<span>&deg; C</span>
+                }
+                @if (Convert.ToString(ViewData["Message"]) == "f")
+                {
+                    <span>High:</span> @Convert.ToString(model.HighF)<span>&deg; F</span><BR />
+                    <span>Low:</span> @Convert.ToString(model.LowF)<span>&deg; F</span>
+                }
+            </div>
+
+            @if (model.FiveDayForecast == 1)
+            {
+                if ((model.HighF - model.LowF) > 20)
+                {
+                    <p class="weather-advisory"><button type="button" class="btn btn-outline-danger btn-lg">@weatherAdvisory Wear breathable layers</button></p>
+                }
+
+                else if (model.HighF > 75)
+                {
+                    <p class="weather-advisory"><button type="button" class="btn btn-outline-danger btn-lg">@weatherAdvisory Bring an extra gallon of water</button></p>
+                }
+
+                else if (model.LowF < 20)
+                {
+                    <p class="weather-advisory"><button type="button" class="btn btn-outline-danger btn-lg">@weatherAdvisory Danger: Exposure to frigid temparatures</button></p>
+                }
+
+            }
+            <span style="visibility: hidden;">@(count++)</span>
+        </div>
+    </div>
+
+        }
+
+    </div>

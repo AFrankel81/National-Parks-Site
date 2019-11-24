@@ -1,0 +1,30 @@
+﻿@model IList<SurveyModel>
+@{
+    ViewData["Title"] = "FavParks";
+}
+
+<div class="card-favorite">
+    <div class="card-body-favorite">
+        <h1 class="card-title">Favorite Parks</h1>
+        <p></p>
+
+        @foreach (SurveyModel surveyModel in Model)
+        {
+
+            
+        <div class="favorite-image">
+            <a asp-controller="Park" asp-action="Details" asp-route-parkCode="@surveyModel.ParkCode">
+            <img class="favorite-park-image" src="~/images/@(Convert.ToString(surveyModel.ParkCode).ToLower()).jpg" />
+            </a>
+
+        </div>
+            
+        <div class="park-favorite-info">
+            @surveyModel.ParkName &nbsp; &nbsp; <img class="heart" src="~/images/heart.png" /><span class="total-count">@surveyModel.TotalCount</span>
+
+        </div>
+            
+        }
+
+    </div>
+</div>
